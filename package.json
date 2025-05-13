@@ -1,0 +1,17 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is a namaste react project",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Deepanker",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.15.0"
+  }
+}
