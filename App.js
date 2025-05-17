@@ -34,7 +34,9 @@ import ReactDOM from "react-dom/client"
 
 //JSX - HTML-like or XML-like syntax
 
-const jsonHeading=<h1 id="headings">Namaste React using JSx</h1>
+
+//JSX (transpiled before it reaches the JS)- by Parcel- by a package known as Babel
+const jsonHeading=<h1 className="head" tabIndex="1">Namaste React using JSx</h1>
 
 const root=ReactDOM.createRoot(document.getElementById("root"))
 
