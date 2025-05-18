@@ -1,7 +1,7 @@
 //React Element is an object and not and HTML
 
 import React from "react";
-import ReactDOM from "react-dom/client"
+import ReactDOM from "react-dom/client";
 
 // const parent = React.createElement(
 //     "div",
@@ -18,7 +18,6 @@ import ReactDOM from "react-dom/client"
 //     ])
 // )
 
-
 // const heading = React.createElement("h1",
 //     { id: "heading", xyz: "abc" },
 //     "Hellow World From React!!")
@@ -30,14 +29,59 @@ import ReactDOM from "react-dom/client"
 
 // console.log(heading);       //Object
 
-
-
 //JSX - HTML-like or XML-like syntax
 
-
 //JSX (transpiled before it reaches the JS)- by Parcel- by a package known as Babel
-const jsonHeading=<h1 className="head" tabIndex="1">Namaste React using JSx</h1>
+// const jsonHeading =<h1 className="head" tabIndex="1">Namaste React using JSx</h1>
 
-const root=ReactDOM.createRoot(document.getElementById("root"))
+//React Element
+const heading = (
+  <h1 className="head" tabIndex="1">
+    Namaste React using JSx
+  </h1>
+);
 
-root.render(jsonHeading)
+const Title = () => (
+  <h1 className="head" tabIndex="1">
+    Namaste React using JSx
+  </h1>
+);
+
+const number = 10000;
+
+//React Component
+//Class Based Components- OLD way of writing code
+//Functional Components- NEW way of writing code
+
+//React Functional Component
+const HeadingComponent = () => (
+  <div id="container">
+    {/* //This is also known as component composition */}
+    <Title />
+
+    {/* or */}
+    
+    {"Calling as function"}
+    {Title()}
+
+    {/*3rd way*/}
+
+    <Title></Title>
+    <h1>{number}</h1> {/*any piece of js code can be written here!!*/}
+    <h3>{100 + 200}</h3>
+    <h2>{console.log("Logging here")}</h2>
+    {heading}
+    <h1>Functional Component In React</h1>
+  </div>
+);
+
+const heading22 = <HeadingComponent />;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(heading)
+root.render(<HeadingComponent />);
+
+// root.render(heading22)
+//img, src, anchor tag in JSX
+//Note: JSX sanitize the code either by API or some other ways
