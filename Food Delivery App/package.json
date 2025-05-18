@@ -1,0 +1,24 @@
+{
+  "name": "food-delivery-app",
+  "version": "1.0.0",
+  "description": "\"This is a food delviery web app\"",
+  "keywords": [
+    "food",
+    "online-food"
+  ],
+  "license": "ISC",
+  "author": "Deepanker",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.1"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
