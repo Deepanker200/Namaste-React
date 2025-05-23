@@ -8,11 +8,11 @@ const RestaurentCard = (props) => {
   const { resData } = props;
   //Destructing
 
-  const { cloudinaryImageId, name, avgRating, cuisines, sla } =
+  const { cloudinaryImageId, name, avgRating, cuisines, sla,costForTwo } =
     resData?.info || {};
   const { deliveryTime } = sla || {};
 
-  console.log(props);
+  // console.log(props);
   return (
     <div className="res-card" style={styleCard}>
       <img
@@ -26,6 +26,7 @@ const RestaurentCard = (props) => {
       <h3>{name}</h3>
       <h4>{avgRating} stars</h4>
       <h4>{deliveryTime} minutes</h4>
+      <h4>{costForTwo} minutes</h4>
     </div>
   );
 };

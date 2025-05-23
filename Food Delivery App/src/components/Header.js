@@ -1,6 +1,6 @@
 import { LOGO_URL } from "../utils/constants";
 
- export const Header = () => {
+const Header = () => {
   return (
     <div className="header">
       <div>
@@ -21,4 +21,4 @@ import { LOGO_URL } from "../utils/constants";
   );
 };
 
-default Header;
+export default Header;
