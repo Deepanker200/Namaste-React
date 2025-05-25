@@ -1,13 +1,21 @@
 import RestaurentCard from "./RestaurantCard";
 import resObj from "../utils/mockData";
+import { useState } from "react";
 
 const Body = () => {
-  let listOfRestaurnants = [
+  //Local State Variable- Super Powerful Variable
 
-    //State Variable
+  //it is also known as array destructing
+  //  const arr=useState(resObj)
+  //  const [listOfRestaurnants,setListOfRestaurnants]=arr
+  // const listOfRestaurnants=arr[0]
+  // const setListOfRestaurnants=arr[1]
+
+  const [listOfRestaurnants, setListOfRestaurnants] = useState(resObj);    //state variable
 
 
-    //Normal JS variable
+  //Normal JS variable
+  let listOfRestaurnantsJS = [
     {
       info: {
         id: "385829",
@@ -75,10 +83,10 @@ const Body = () => {
     <div className="body">
       <div className="filter">
         <button className="filter-btn" onClick={() => {
-          listOfRestaurnants = listOfRestaurnants.filter(
-            (res) => res.info.avgRating > 4)
-          console.log(listOfRestaurnants);
-
+          const filteredList = listOfRestaurnants.filter(
+            (res) => res.info.avgRating > 4
+          );
+          setListOfRestaurnants(filteredList);
         }}
         >
           Top Rated Restaurant</button>
