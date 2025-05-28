@@ -4,7 +4,7 @@ const styleCard = {
   backgroundColor: "#f0f0f0",
 };
 
-const RestaurentCard = (props) => {
+const RestaurantCard = (props) => {
   const { resData } = props;
   //Destructing
 
@@ -31,4 +31,4 @@ const RestaurentCard = (props) => {
   );
 };
 
-export default RestaurentCard;
+export default RestaurantCard;
