@@ -12,27 +12,32 @@ const Body = () => {
   // const setListOfRestaurnants=arr[1]
 
   const [listOfRestaurants, setListOfRestaurants] = useState([]);    //state variable
+  const [searchText, setSearchText] = useState("");    //state variable
 
-  useEffect(() => { 
+  //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
+  console.log("Body Rendered");
+
+
+  useEffect(() => {
     // console.log("useEffect called");
     fetchData();
   }, []);
 
-const fetchData= async()=>{
-  const data =await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-  
-  const json =await data.json();
-  // console.log(json);
-  
-  //Optional Chaining
-  setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
-}
+  const fetchData = async () => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+
+    const json = await data.json();
+    // console.log(json);
+
+    //Optional Chaining
+    setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  }
 
 
-//Conditional Rendering
-// if(listOfRestaurants.length===0){
-//   return <Shimmer/>
-// }
+  //Conditional Rendering
+  // if(listOfRestaurants.length===0){
+  //   return <Shimmer/>
+  // }
 
   //Normal JS variable
   let listOfRestaurantsJS = [
@@ -99,9 +104,18 @@ const fetchData= async()=>{
   ];
 
 
-  return listOfRestaurants.length===0 ? <Shimmer/> : (
+  return listOfRestaurants.length === 0 ? <Shimmer /> : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input type="text" className="search-box" value={searchText} onChange={(e) => {
+            setSearchText(e.target.value);
+          }} />
+          <button onClick={() => {
+            //Filer the restaurant card and update the UI
+            console.log(searchText);
+          }}>Search</button>
+        </div>
         <button className="filter-btn" onClick={() => {
           const filteredList = listOfRestaurants.filter(
             (res) => res.info.avgRating > 4
