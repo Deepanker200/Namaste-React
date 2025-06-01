@@ -12,3 +12,5 @@ import {Component} from "path
 - useState() - Superpowerful Hook in Reactjs
 - useEffect()
 - Hooks are utility functions
+- Never put a state variable inside a condition (specially the useState() hook)
+- Never put a state variable inside a function nor in a loop (specially the useState() hook)
