@@ -12,6 +12,7 @@ const Body = () => {
   // const setListOfRestaurnants=arr[1]
 
   const [listOfRestaurants, setListOfRestaurants] = useState([]);    //state variable
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);    //state variable
   const [searchText, setSearchText] = useState("");    //state variable
 
   //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
@@ -24,13 +25,15 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    // const data = await fetch("https://corsproxy.io/?url=https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data = await fetch("https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Fis-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING%26lat=28.7040592%26lng=77.1024901")
 
     const json = await data.json();
-    // console.log(json);
+    console.log(json);
 
     //Optional Chaining
-    setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
 
@@ -108,28 +111,40 @@ const Body = () => {
     <div className="body">
       <div className="filter">
         <div className="search">
+
           <input type="text" className="search-box" value={searchText} onChange={(e) => {
-            setSearchText(e.target.value);
+            setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
           }} />
+
           <button onClick={() => {
             //Filer the restaurant card and update the UI
             console.log(searchText);
+
+            const filteredRestaurant = listOfRestaurants.filter(
+              (res) =>
+                res.info.name.toLowerCase().includes(searchText));
+
+            setFilteredRestaurant(filteredRestaurant);
+
           }}>Search</button>
         </div>
+
+
         <button className="filter-btn" onClick={() => {
           const filteredList = listOfRestaurants.filter(
             (res) => res.info.avgRating > 4
           );
-          setListOfRestaurants(filteredList);
+          setFilteredRestaurant(filteredList);
         }}
         >
           Top Rated Restaurant</button>
       </div>
-      <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
-          //Always use unique key and not index(avoid it)
 
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+
+      <div className="res-container">
+        {filteredRestaurant.map((restaurant) => (      //restaurant is a random map variable
+
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />   //Always use unique key and not index(avoid it)
         ))}
       </div>
     </div>
