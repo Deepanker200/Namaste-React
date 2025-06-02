@@ -14,3 +14,7 @@ import {Component} from "path
 - Hooks are utility functions
 - Never put a state variable inside a condition (specially the useState() hook)
 - Never put a state variable inside a function nor in a loop (specially the useState() hook)
+
+# 2 types Routing in web apps
+- Client Side Routing
+- Server Side Routing
