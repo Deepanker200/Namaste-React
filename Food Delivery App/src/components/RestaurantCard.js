@@ -6,11 +6,11 @@ const styleCard = {
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+  
   //Destructing
-
   const { cloudinaryImageId, name, avgRating, cuisines, sla,costForTwo } =
-    resData?.info || {};
-  const { deliveryTime } = sla || {};
+    resData?.info;
+  const { deliveryTime } = sla;
 
   // console.log(props);
   return (
