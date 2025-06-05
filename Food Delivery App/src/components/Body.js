@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //Local State Variable- Super Powerful Variable
@@ -25,15 +26,14 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    // const data = await fetch("https://corsproxy.io/?url=https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-    const data = await fetch("https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Fis-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING%26lat=28.7040592%26lng=77.1024901")
+    // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 
     const json = await data.json();
-    console.log(json);
+    console.log("This json:",json);
 
     //Optional Chaining
-    setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
 
@@ -142,9 +142,15 @@ const Body = () => {
 
 
       <div className="res-container">
-        {filteredRestaurant.map((restaurant) => (      //restaurant is a random map variable
+        {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
+        (
+          <Link
+              key={restaurant?.info?.id} // ✅ Correct placement
 
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />   //Always use unique key and not index(avoid it)
+            to={"/restaurants/" + restaurant.info.id}
+             style={{color: "blue" }}
+            >
+              <RestaurantCard resData={restaurant} /></Link>   //Always use unique key and not index(avoid it)
         ))}
       </div>
     </div>
