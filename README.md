@@ -18,3 +18,7 @@ import {Component} from "path
 # 2 types Routing in web apps
 - Client Side Routing
 - Server Side Routing
+
+# Link Component for linking- it will not refresh my page
+
+- import { Link } from "react-router-dom";
