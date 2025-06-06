@@ -26,14 +26,14 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 
     const json = await data.json();
     console.log("This json:",json);
 
     //Optional Chaining
-    // setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    // setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
 
@@ -145,8 +145,7 @@ const Body = () => {
         {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
         (
           <Link
-              key={restaurant?.info?.id} // ✅ Correct placement
-
+              key={restaurant?.info?.id} 
             to={"/restaurants/" + restaurant.info.id}
              style={{color: "blue" }}
             >
