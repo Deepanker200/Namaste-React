@@ -14,6 +14,7 @@ import {Component} from "path
 - Hooks are utility functions
 - Never put a state variable inside a condition (specially the useState() hook)
 - Never put a state variable inside a function nor in a loop (specially the useState() hook)
+- Never update state variable directly
 
 # 2 types Routing in web apps
 - Client Side Routing
@@ -22,3 +23,24 @@ import {Component} from "path
 # Link Component for linking- it will not refresh my page
 
 - import { Link } from "react-router-dom";
+
+
+# React Lifecycle
+
+- Parent Constructor
+- Parent render
+    - First Constructor
+    - First render
+- Child render
+    - First Constructor
+    - First render
+    - Second Constructor
+    - Second render
+    
+    <!-- <DOM UPDATED - IN A SINGLE BATCH> -->
+    - First componentDidMount
+    - Second componentDidMount
+
+- Parent componentDidMount
+
+<!-- Render phase is fast than commit phase -->
