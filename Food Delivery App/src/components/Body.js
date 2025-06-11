@@ -120,39 +120,41 @@ const Body = () => {
 
   return listOfRestaurants.length === 0 ? <Shimmer /> : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search m-4 p-4">
 
-          <input type="text" className="search-box" value={searchText} onChange={(e) => {
+          <input type="text" className="border border-solid border-black" value={searchText} onChange={(e) => {
             setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
           }} />
 
-          <button onClick={() => {
-            //Filer the restaurant card and update the UI
-            console.log(searchText);
+          <button className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            onClick={() => {
+              //Filer the restaurant card and update the UI
+              console.log(searchText);
 
-            const filteredRestaurant = listOfRestaurants.filter(
-              (res) =>
-                res.info.name.toLowerCase().includes(searchText));
+              const filteredRestaurant = listOfRestaurants.filter(
+                (res) =>
+                  res.info.name.toLowerCase().includes(searchText));
 
-            setFilteredRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filteredRestaurant);
 
-          }}>Search</button>
+            }}>Search</button>
         </div>
 
-
-        <button className="filter-btn" onClick={() => {
-          const filteredList = listOfRestaurants.filter(
-            (res) => res.info.avgRating > 4
-          );
-          setFilteredRestaurant(filteredList);
-        }}
-        >
-          Top Rated Restaurant</button>
+        <div className="search m-4 p-4 flex items-center">
+          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.info.avgRating > 4
+            );
+            setFilteredRestaurant(filteredList);
+          }}
+          >
+            Top Rated Restaurant</button>
+        </div>
       </div>
 
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-evenly">
         {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
         (
           <Link
