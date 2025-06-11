@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //Local State Variable- Super Powerful Variable
@@ -29,7 +30,7 @@ const Body = () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 
     const json = await data.json();
-    console.log("This json:",json);
+    console.log("This json:", json);
 
     //Optional Chaining
     setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -37,6 +38,16 @@ const Body = () => {
   }
 
 
+  //online status
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you are offline! Please check your internet connection
+      </h1>
+    );
   //Conditional Rendering
   // if(listOfRestaurants.length===0){
   //   return <Shimmer/>
@@ -145,11 +156,11 @@ const Body = () => {
         {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
         (
           <Link
-              key={restaurant?.info?.id} 
+            key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant.info.id}
-             style={{color: "blue" }}
-            >
-              <RestaurantCard resData={restaurant} /></Link>   //Always use unique key and not index(avoid it)
+            style={{ color: "blue" }}
+          >
+            <RestaurantCard resData={restaurant} /></Link>   //Always use unique key and not index(avoid it)
         ))}
       </div>
     </div>

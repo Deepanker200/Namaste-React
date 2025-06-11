@@ -1,6 +1,22 @@
-Two types of Export/Import
+# Namaste React
 
+# Parcel
+- Dev Build
+- Local Server
+- HMR = Hot Module Replacement
+- File Watching Algorithm - written in C++ Caching Faster Builds Image Optimization
+- Minification
+- Bundling Compress
+- Consistent Hashing
+- Code Splitting
+- Differential Bundling - support older browsers
+- Diagnostic
+- Error Handling
+- HTTPS
+- Tree Shaking - remove unused code
+- Different dev and prod bundles
 
+# Two types of Export/Import
 
 - Named Export/Import
 
@@ -44,3 +60,9 @@ import {Component} from "path
 - Parent componentDidMount
 
 <!-- Render phase is fast than commit phase -->
+- Chunking
+- Code Splitting
+- Lazy Loading
+- React Dev Tools
+- Dynamic Bundling
+- On Demand Loading
