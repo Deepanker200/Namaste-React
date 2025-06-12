@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -16,6 +16,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);    //state variable
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);    //state variable
   const [searchText, setSearchText] = useState("");    //state variable
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
   //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
   console.log("Body Rendered");
@@ -144,7 +146,7 @@ const Body = () => {
         <div className="search m-4 p-4 flex items-center">
           <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4
+              (res) => res.info.avgRating > 4.3
             );
             setFilteredRestaurant(filteredList);
           }}
@@ -160,8 +162,13 @@ const Body = () => {
           <Link
             key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant.info.id}
-            style={{ color: "blue" }}
           >
+
+          {/**if the restaurant is promoted then add a promoted label to it */}
+            {/* {
+              restaurant.data.promoted ? <RestaurantCardPromoted resData={restaurant}/>:<RestaurantCard resData={restaurant}/>
+          } */}
+
             <RestaurantCard resData={restaurant} /></Link>   //Always use unique key and not index(avoid it)
         ))}
       </div>

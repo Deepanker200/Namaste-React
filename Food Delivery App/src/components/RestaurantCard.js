@@ -15,9 +15,9 @@ const RestaurantCard = (props) => {
   // console.log(props);
   return (
     // <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-black" style={styleCard}>    //custom styling
-    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-black">
+    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200">
       <img
-        className="rounded-lg"
+        className="rounded-lg h-[258px]"
         alt="res-food"
         src={
           CDN_URL +
@@ -31,5 +31,20 @@ const RestaurantCard = (props) => {
     </div>
   );
 };
+
+//Higher Order Component
+
+//input - RestaurantCard    Output - RestaurantCardPromoted
+
+export const withPromotedLabel=(RestaurantCard)=>{
+  return(props)=>{
+    return(
+      <div>
+        <label className="absolute bg-black text-white">Promoted</label>
+        <RestaurantCard {...props}/>
+      </div>
+    )
+  }
+}
 
 export default RestaurantCard;
