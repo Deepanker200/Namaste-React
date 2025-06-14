@@ -35,8 +35,8 @@ const Body = () => {
     console.log("This json:", json);
 
     //Optional Chaining
-    setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
 
@@ -165,11 +165,12 @@ const Body = () => {
           >
 
           {/**if the restaurant is promoted then add a promoted label to it */}
-            {/* {
-              restaurant.data.promoted ? <RestaurantCardPromoted resData={restaurant}/>:<RestaurantCard resData={restaurant}/>
-          } */}
+            {
+              restaurant.info.areaName==="Rohini" ? <RestaurantCardPromoted resData={restaurant}/>:<RestaurantCard resData={restaurant}/>
+          }
 
-            <RestaurantCard resData={restaurant} /></Link>   //Always use unique key and not index(avoid it)
+            <RestaurantCard resData={restaurant} />
+            </Link>   //Always use unique key and not index(avoid it)
         ))}
       </div>
     </div>
