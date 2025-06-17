@@ -29,7 +29,8 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data = await fetch("https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Fis-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING%26lat=28.7040592%26lng=77.1024901")
 
     const json = await data.json();
     console.log("This json:", json);
@@ -169,7 +170,7 @@ const Body = () => {
               restaurant.info.areaName==="Rohini" ? <RestaurantCardPromoted resData={restaurant}/>:<RestaurantCard resData={restaurant}/>
           }
 
-            {/* <RestaurantCard resData={restaurant} /> */}
+            {/* <RestaurantCard resData={restaurant} />   Commented because I'm using Higher Order Component */}
             </Link>   //Always use unique key and not index(avoid it)
         ))}
       </div>
