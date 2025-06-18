@@ -2,6 +2,7 @@ import Shimmer from "./Shimmer";
 import { CDN_URL } from '../utils/constants';
 import { useParams } from 'react-router-dom';
 import useRestaurantMenu from "../utils/useRestaurantMEnu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
 
@@ -18,6 +19,7 @@ const RestaurantMenu = () => {
   // }
 
   if (resInfo === null) return <Shimmer />
+console.log(resInfo);
 
   const { name, cuisines, cloudinaryImageId, costForTwoMessage, avgRating } =
     resInfo?.cards[2]?.card?.card?.info || {};
@@ -56,8 +58,8 @@ const RestaurantMenu = () => {
 
       {/**categories accordions */}
 
-      {categories.map(()=>{
-        
+      {categories.map((category)=>{
+        return <RestaurantCategory  key={category?.card?.card?.categoryId} data={category?.card?.card}/>
       })}
     </div>
   )
