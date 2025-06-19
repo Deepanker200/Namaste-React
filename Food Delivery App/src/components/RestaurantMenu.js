@@ -58,9 +58,9 @@ console.log(resInfo);
 
       {/**categories accordions */}
 
-      {categories.map((category)=>{
-        return <RestaurantCategory  key={category?.card?.card?.categoryId} data={category?.card?.card}/>
-      })}
+      {categories.map((category)=>(
+         <RestaurantCategory  key={category?.card?.card?.categoryId} data={category?.card?.card}/>
+      ))}
     </div>
   )
 }
