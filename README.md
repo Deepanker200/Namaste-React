@@ -66,3 +66,6 @@ import {Component} from "path
 - React Dev Tools
 - Dynamic Bundling
 - On Demand Loading
+
+
+# Controlled & Uncontrolled Component

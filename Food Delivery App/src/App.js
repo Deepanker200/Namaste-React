@@ -1,7 +1,7 @@
 //React Element is an object and not and HTML
 //Note: There's a term known as config driven ui
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -11,6 +11,8 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
+
 
 // import Grocery from "./components/Grocery";
 
@@ -20,11 +22,28 @@ import Shimmer from "./components/Shimmer";
 // };
 
 const AppLayout = () => {
+
+  const [username, setUsername] = useState();
+
+  //authentication
+  useEffect(() => {
+    const data = {
+      name: "Deepanker Tiwari"
+    }
+
+    setUsername(data.name)
+  }, [])
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: username,setUsername }}>
+      <div className="app">
+        {/* <UserContext.Provider value={{ loggedInUser: "Elon Musk" }}> */}
+          <Header />
+        {/* </UserContext.Provider> */}
+        <Outlet />
+      </div>
+    </UserContext.Provider>
+
   );
 };
 
@@ -49,11 +68,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/grocery",
-        element:(
-        <Suspense fallback={<Shimmer/>}>
-          <Grocery />
-        </Suspense>
-        ) 
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Grocery />
+          </Suspense>
+        )
       },
       {
         path: "/restaurants/:resId",

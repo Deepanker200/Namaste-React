@@ -1,6 +1,8 @@
 import { CDN_URL } from "../utils/constants"
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items,dummy }) => {
+    console.log(dummy);
+    
     return (
         <div>
             {items.map(item => (
@@ -16,7 +18,7 @@ const ItemList = ({ items }) => {
                     </div>
                     <div className="w-3/12">
                         <div className="absolute">
-                            <button className="p-2 bg-white shadow-lg m-auto">Add +</button>
+                            <button className="p-2 mx-16 bg-black text-white rounded-lg shadow-lg">Add +</button>
                         </div>
                         <img src={CDN_URL + item.card.info.imageId} className="w-full" />
                     </div>

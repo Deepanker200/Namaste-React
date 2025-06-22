@@ -3,23 +3,23 @@ import { CDN_URL } from '../utils/constants';
 import { useParams } from 'react-router-dom';
 import useRestaurantMenu from "../utils/useRestaurantMEnu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
 
   const { resId } = useParams();
+
   const resInfo = useRestaurantMenu(resId);
 
+  const [showIndex,setShowIndex]=useState(0);
 
+  const data="Dummy data";
 
+  // const [showIndex, setShowIndex] = useState(null);
 
-  // const fetchMenu2 = async () => {
-  //   const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.99740&lng=79.00110&restaurantId=151656&catalog_qa=undefined&submitAction=ENTER")
-  //   const json2 = await data.json();
-  //   console.log(json2.data);
-  // }
 
   if (resInfo === null) return <Shimmer />
-console.log(resInfo);
+  // console.log(resInfo);
 
   const { name, cuisines, cloudinaryImageId, costForTwoMessage, avgRating } =
     resInfo?.cards[2]?.card?.card?.info || {};
@@ -28,13 +28,13 @@ console.log(resInfo);
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
   // console.log("Item Cards: ",itemCards);
-  console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+  // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
     c => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
 
-  console.log(categories);
+  // console.log(categories);
 
 
   return (
@@ -58,8 +58,14 @@ console.log(resInfo);
 
       {/**categories accordions */}
 
-      {categories.map((category)=>(
-         <RestaurantCategory  key={category?.card?.card?.categoryId} data={category?.card?.card}/>
+      {categories.map((category, index) => (
+        //Controlled Component
+        <RestaurantCategory
+          key={category?.card?.card?.categoryId}
+          data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+        dummy={data}/>
       ))}
     </div>
   )
