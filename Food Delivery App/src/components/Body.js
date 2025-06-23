@@ -21,7 +21,7 @@ const Body = () => {
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
   //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
-  console.log("Body Rendered");
+  console.log("Body Rendered");   //At first it will print 2 times due to loggedInUser value as context api re-renders
 
 
   useEffect(() => {

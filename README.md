@@ -69,3 +69,19 @@ import {Component} from "path
 
 
 # Controlled & Uncontrolled Component
+
+# REDUX Toolkit
+- REDUX works in data layer
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our App
+- Slice(cartSlice)
+- dispatch(action)
+- Selector
+
+
+
+# Remember
+- onClick={() => handleAddItem(item)}
+- onClick={handleAddItem(item)}
+- onClick={handleAddItem}
