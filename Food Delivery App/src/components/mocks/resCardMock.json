@@ -1,0 +1,103 @@
+{
+    "info": {
+        "id": "444780",
+        "name": "Theobroma",
+        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/23/87a3b03c-a576-4188-8d67-df70900063b3_444780.JPG",
+        "locality": "Sector 3",
+        "areaName": "Rohini",
+        "costForTwo": "₹400 for two",
+        "cuisines": [
+            "Bakery",
+            "Desserts"
+        ],
+        "avgRating": 4.6,
+        "parentId": "1040",
+        "avgRatingString": "4.6",
+        "totalRatingsString": "4.4K+",
+        "sla": {
+            "deliveryTime": 20,
+            "lastMileTravel": 2.2,
+            "serviceability": "SERVICEABLE",
+            "slaString": "20-25 mins",
+            "lastMileTravelString": "2.2 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2025-06-26 00:00:00",
+            "opened": true
+        },
+        "badges": {
+            "imageBadges": [
+                {
+                    "imageId": "bolt/big%20rx%20listing%2015%20mins%20.png",
+                    "description": "bolt!"
+                },
+                {
+                    "imageId": "Rxawards/_CATEGORY-Desserts.png",
+                    "description": "Delivery!"
+                },
+                {
+                    "imageId": "newg.png",
+                    "description": "Gourmet"
+                }
+            ]
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {
+                    "badgeObject": [
+                        {
+                            "attributes": {
+                                "description": "bolt!",
+                                "imageId": "bolt/big%20rx%20listing%2015%20mins%20.png"
+                            }
+                        },
+                        {
+                            "attributes": {
+                                "description": "Delivery!",
+                                "imageId": "Rxawards/_CATEGORY-Desserts.png"
+                            }
+                        },
+                        {
+                            "attributes": {
+                                "description": "Gourmet",
+                                "imageId": "newg.png"
+                            }
+                        }
+                    ]
+                },
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "50% OFF",
+            "discountTag": "FLAT DEAL"
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {},
+        "externalRatings": {
+            "aggregatedRating": {
+                "rating": "--"
+            }
+        },
+        "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {
+        "context": "seo-data-69aa36a2-3b7e-41fb-8099-f6668fd1fc90"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/city/delhi/theobroma-sector-3-rohini-rest444780",
+        "type": "WEBLINK"
+    }
+}

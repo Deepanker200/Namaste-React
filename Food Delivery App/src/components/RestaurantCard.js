@@ -9,6 +9,9 @@ const styleCard = {
 const RestaurantCard = (props) => {
   const { resData } = props;
 
+  console.log(resData);
+  
+
   const {loggedInUser}=useContext(UserContext);
   
   //Destructing
@@ -19,7 +22,7 @@ const RestaurantCard = (props) => {
   // console.log(props);
   return (
     // <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-black" style={styleCard}>    //custom styling
-    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200">
+    <div data-testid="resCard" className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200">
       <img
         className="rounded-lg h-[258px]"
         alt="res-food"

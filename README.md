@@ -85,3 +85,19 @@ import {Component} from "path
 - onClick={() => handleAddItem(item)}
 - onClick={handleAddItem(item)}
 - onClick={handleAddItem}
+
+
+# Types of testing (developer)
+- Unit testing: Test our React component in isolation
+- Integration testing
+- End-to-end testing - e2e testing (Tools like Selenium,Cyprus etc)
+
+# Setting up Testing in our App
+- Install React Testing Library
+- Installed Jest
+- Installed Babel Dependencies
+- Configure Babel
+- Configue Parcel Config file to disable default Babel transpilation
+- Jest Configuration(npx create-jest)
+- Install "@babel/preset-react" to make JSX work for test cases and also configure our "babel.config.js" file
+- Install "@testing-library/jest-dom"
