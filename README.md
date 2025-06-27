@@ -101,3 +101,35 @@ import {Component} from "path
 - Jest Configuration(npx create-jest)
 - Install "@babel/preset-react" to make JSX work for test cases and also configure our "babel.config.js" file
 - Install "@testing-library/jest-dom"
+
+
+
+# Netflix GPT
+
+- Create React App
+- Configured TailwindCSS
+- Header
+- Login Form
+- Sign up Form
+
+# Features
+- Login/Signup Page
+    - Sign In/Sign up Form
+    - Re-direct to Browse Page
+
+- Browse (after authentication)
+    - Header
+    - Main Movie
+        - Trailer in Background
+        - Title & Description
+        - Movie Suggestions
+            - Movie Lists * N
+
+- Netflix GPT
+    - Search Bar
+    - Movie Suggestions
+
+
+
+# Points to remember
+- Formik Library in React for making big forms
