@@ -114,6 +114,14 @@ import {Component} from "path
 - Sign up Form
 - Form Validation
 - useRef Hook
+- Firebase Setup
+- Deploying our App to prod
+- Create Signup User Account in Firebase
+- Implement Sign In User API
+- Created Redux Store with userSlice
+- Implemented Sign Out
+- Update Profile API call
+- Fetch from TMDB Movies
 
 # Features
 - Login/Signup Page
