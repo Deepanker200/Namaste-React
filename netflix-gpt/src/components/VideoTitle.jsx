@@ -8,10 +8,10 @@ const VideoTitle = ({ title, overview }) => {
       <h1 className="text-6xl font-bold">{title}</h1>
       <p className="py-6 text-lg w-1/3">{overview}</p>
       <div className="flex">
-        <button className="bg-white text-black p-4 px-16 text-xl flex gap-4 items-center rounded-lg">
+        <button className="bg-white text-black p-4 px-16 text-xl flex gap-2 items-center rounded-lg">
           <FontAwesomeIcon icon={faPlay} />
           Play</button>
-        <button className="mx-2 bg-gray-500  text-white p-4 px-16 text-xl flex gap-4 items-center bg-opacity-50 rounded-lg hover:bg-opacity-50">
+        <button className="mx-2 bg-gray-500  text-white p-4 px-16 text-xl flex gap-2 items-center bg-opacity-50 rounded-lg hover:bg-opacity-50">
           <FontAwesomeIcon icon={faInfoCircle} />
           More Info</button>
       </div>
