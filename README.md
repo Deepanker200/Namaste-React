@@ -133,7 +133,24 @@ import {Component} from "path
 - Fetch Data for Trailer Video Data
 - Embedded the YT video and make it autoplay and mute
 - Tailwind Classes to make Main Container look awesome
-<!-- - Fetch from TMDB Movies -->
+- Build Secondary Component
+- Build Movie List
+- Build Movie Card
+- TMDB Image CDN URL
+- Made the Browse Page amazing with Tailwind CSS
+- usePopularMovies Custom Hook
+- GPT Search feature
+- GPT Search Page
+- GPT Search Bar
+- (BONUS) Multi-langigage Feature in our App
+- Get GROK AI API Key
+- Fetched gptMovieSuggestions from TMDB
+- Created gptSlice added data
+- Reused Movie List component to make movie suggestion container
+- Memoization
+- Added .env file
+- ADding .env file to gitignore
+- Made our site Responsive
 
 # Features
 - Login/Signup Page
