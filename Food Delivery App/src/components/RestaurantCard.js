@@ -9,7 +9,7 @@ const styleCard = {
 const RestaurantCard = (props) => {
   const { resData } = props;
 
-  console.log(resData);
+  // console.log(resData);
   
 
   const {loggedInUser}=useContext(UserContext);
