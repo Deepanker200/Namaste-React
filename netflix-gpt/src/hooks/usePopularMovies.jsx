@@ -19,6 +19,7 @@ const usePopularMovies = () => {
     }
 
     useEffect(() => {
+        //Memoization
          !popularMovies && getPopularMovies();
     }, [])
 
