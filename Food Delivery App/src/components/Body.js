@@ -29,6 +29,15 @@ const Body = () => {
     fetchData();
   }, []);
 
+
+  // useEffect(() => {
+  //   console.log("useEffect called");
+  //   fetchData();
+  //       console.log(filteredRestaurant);    //cause infinite loop if pass filteredRestaurant
+
+  // }, [filteredRestaurant]);
+
+
   const fetchData = async () => {
     
     // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")

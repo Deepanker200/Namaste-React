@@ -28,7 +28,7 @@ const RestaurantCard = (props) => {
     aggregatedDiscountInfoV3
   } = resData?.info || {};
 
-  console.log(resData?.info?.aggregatedDiscountInfoV3);
+  // console.log(resData?.info?.aggregatedDiscountInfoV3);
 
   const { deliveryTime } = sla;
   const { header, subHeader } = aggregatedDiscountInfoV3 || {};
@@ -40,7 +40,7 @@ const RestaurantCard = (props) => {
   // console.log(props);
   return (
     // <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-black" style={styleCard}>    //custom styling
-    <div data-testid="resCard" className="m-4 p-4 md:px-0 md:mx-0 md:pt-0 md:mt-0 w-[300px] rounded-lg">
+    <div data-testid="resCard" className="m-4 p-4 md:px-0 md:mx-0 md:pt-0 md:mt-0 w-[250px] rounded-lg">
 
       <div className="relative w-64 h-40 rounded-lg overflow-hidden">
         <img
@@ -64,9 +64,9 @@ const RestaurantCard = (props) => {
         <h4 className="flex gap-2 items-center"><span className="bg-green-600 text-white border border-green-600 rounded-full p-1 text-[12px] h-[20px] w-[20px] flex items-center justify-center"><i className="fa-solid fa-star"></i></span>{avgRating} stars</h4>
         <h4>{deliveryTime} minutes</h4>
       </div>
-      <h4 className="text-gray-600">{locality}, {areaName}</h4>
+      <h4 className="text-gray-600"> {areaName}</h4>
 
-      <h4>User: <b>{loggedInUser}</b></h4>
+      <h4 className="truncate">{cuisines.join(', ')}</h4>
     </div>
   );
 };
@@ -79,7 +79,7 @@ export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label className="absolute bg-red-500 text-white px-3 py-2 rounded-lg">Promoted</label>
+        <label className="absolute bg-red-500 text-white px-3 py-1 rounded-lg z-10 border border-black">Promoted</label>
         <RestaurantCard {...props} />
       </div>
     )

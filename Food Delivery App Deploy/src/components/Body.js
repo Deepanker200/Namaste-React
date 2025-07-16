@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import ItemsCarousel from "./ItemsCarousel";
 
 const Body = () => {
   //Local State Variable- Super Powerful Variable
@@ -16,6 +17,7 @@ const Body = () => {
 
   const [listOfRestaurants, setListOfRestaurants] = useState([]);    //state variable
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);    //state variable
+  const [itemsCarousel, setItemsCarousel] = useState([]);
   const [searchText, setSearchText] = useState("");    //state variable
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
@@ -27,19 +29,21 @@ const Body = () => {
   useEffect(() => {
     // console.log("useEffect called");
     fetchData();
+
   }, []);
 
   const fetchData = async () => {
-    
+
     // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.8059341&lng=77.05284840000002&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const data = await fetch("https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Fis-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING%26lat=28.7040592%26lng=77.1024901")
 
     const json = await data.json();
-    // console.log("This json:", json);
+    console.log("This json:", json);
 
     //Optional Chaining
     setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setItemsCarousel(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
   }
 
 
@@ -123,59 +127,68 @@ const Body = () => {
   ];
 
 
-  const {loggedInUser,setUsername}=useContext(UserContext);
+  const { loggedInUser, setUsername } = useContext(UserContext);
 
   return !Array.isArray(listOfRestaurants) || listOfRestaurants.length === 0 ? <Shimmer /> : (
-    <div className="body md:px-[80px]">
+    <div className="body md:px-[150px]">
       <div className="flex justify-center px-5">
+        <div className="flex justify-space-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
+          <div className="search md:m-4 md:p-4 md:w-auto">
+
+            <input type="text"
+              data-testid="searchInput"
+              className="border border-solid border-black" value={searchText} onChange={(e) => {
+                setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
+                const filteredRestaurant = listOfRestaurants.filter(
+                  (res) =>
+                    res.info.name.toLowerCase().includes(searchText));
+
+                setFilteredRestaurant(filteredRestaurant);
+              }} />
+
+            <button className="px-4 py-2 bg-green-100 ms-2 md:m-4 rounded-lg"
+              onClick={() => {
+                //Filer the restaurant card and update the UI
+                console.log(searchText);
+
+                const filteredRestaurant = listOfRestaurants.filter(
+                  (res) =>
+                    res.info.name.toLowerCase().includes(searchText));
+
+                setFilteredRestaurant(filteredRestaurant);
+
+              }}>Search</button>
+          </div>
+
+          <div className="search md:m-4 md:p-4 flex items-center">
+            <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4.3
+              );
+              setFilteredRestaurant(filteredList);
+            }}
+            >
+              Top Rated Restaurant</button>
+          </div>
+
+          <div className="search m-4 p-4 flex items-center">
+            <label>UserName: </label>
+            <input className="border border-black p-2"
+              value={loggedInUser}
+              onChange={(e) => setUsername(e.target.value)} />
+          </div>
+        </div>
+      </div>
+
+
       <div className="flex justify-space-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
-        <div className="search md:m-4 md:p-4 md:w-auto">
+        <h1></h1>
+        {itemsCarousel.map((car, index) => (
 
-          <input type="text"
-          data-testid="searchInput" 
-          className="border border-solid border-black" value={searchText} onChange={(e) => {
-            setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
-             const filteredRestaurant = listOfRestaurants.filter(
-                (res) =>
-                  res.info.name.toLowerCase().includes(searchText));
-
-              setFilteredRestaurant(filteredRestaurant);
-          }} />
-
-          <button className="px-4 py-2 bg-green-100 ms-2 md:m-4 rounded-lg"
-            onClick={() => {
-              //Filer the restaurant card and update the UI
-              console.log(searchText);
-
-              const filteredRestaurant = listOfRestaurants.filter(
-                (res) =>
-                  res.info.name.toLowerCase().includes(searchText));
-
-              setFilteredRestaurant(filteredRestaurant);
-
-            }}>Search</button>
-        </div>
-
-        <div className="search md:m-4 md:p-4 flex items-center">
-          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.3
-            );
-            setFilteredRestaurant(filteredList);
-          }}
-          >
-            Top Rated Restaurant</button>
-        </div>
-
-        <div className="search m-4 p-4 flex items-center">
-          <label>UserName: </label>
-          <input className="border border-black p-2"
-          value={loggedInUser}
-          onChange={(e)=>setUsername(e.target.value)}/>
-        </div>
+          <ItemsCarousel key={index} item={car} />
+        ))
+        }
       </div>
-      </div>
-
 
       <div className="flex flex-wrap justify-evenly">
         {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
