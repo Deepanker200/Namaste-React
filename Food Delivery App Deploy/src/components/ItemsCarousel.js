@@ -3,10 +3,7 @@ import { CDN_URL } from '../utils/constants';
 
 const ItemsCarousel = ({ item }) => {
 
-  const { imageId } = item?.gridElements?.infoWithStyle?.info || {};
-  console.log( CDN_URL + imageId);
-
-
+  const { imageId } = item || {};
 
 return (
   <>

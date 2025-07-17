@@ -9,5 +9,6 @@ export const LOGO_URL =
 
 export const MENU_API="https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D21.99740%26lng%3D79.00110%26restaurantId%3D";
 
+export const COLL_API="https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3FsortBy%3D%26filters%3D%26type%3Drcv2%26offset%3D0%26page_type%3Dnull%26collection%3D"
 
 // export default {CDN_URL,LOGO_URL};

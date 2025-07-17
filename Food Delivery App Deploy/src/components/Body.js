@@ -19,7 +19,8 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);    //state variable
   const [itemsCarousel, setItemsCarousel] = useState([]);
   const [searchText, setSearchText] = useState("");    //state variable
-
+  const [carouselTitle, setCarouselTitle] = useState("");
+  // const [carouselCollection,setCarouselCollection]=useState("");
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
   //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
@@ -44,6 +45,7 @@ const Body = () => {
     setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setItemsCarousel(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+    setCarouselTitle(json?.data?.cards[0]?.card?.card?.header.title)
   }
 
 
@@ -130,84 +132,84 @@ const Body = () => {
   const { loggedInUser, setUsername } = useContext(UserContext);
 
   return !Array.isArray(listOfRestaurants) || listOfRestaurants.length === 0 ? <Shimmer /> : (
-    <div className="body md:px-[150px]">
-      <div className="flex justify-center px-5">
-        <div className="flex justify-space-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
-          <div className="search md:m-4 md:p-4 md:w-auto">
+    <>
+      <div className="body md:px-[150px]">
+        <div className="flex justify-center px-5">
+          <div className="flex justify-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
 
-            <input type="text"
-              data-testid="searchInput"
-              className="border border-solid border-black" value={searchText} onChange={(e) => {
-                setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
-                const filteredRestaurant = listOfRestaurants.filter(
-                  (res) =>
-                    res.info.name.toLowerCase().includes(searchText));
 
-                setFilteredRestaurant(filteredRestaurant);
-              }} />
+            <div className="search md:m-4 md:p-4 flex items-center">
+              <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
+                const filteredList = listOfRestaurants.filter(
+                  (res) => res.info.avgRating > 4.3
+                );
+                setFilteredRestaurant(filteredList);
+              }}
+              >
+                Top Rated Restaurant</button>
+            </div>
 
-            <button className="px-4 py-2 bg-green-100 ms-2 md:m-4 rounded-lg"
-              onClick={() => {
-                //Filer the restaurant card and update the UI
-                console.log(searchText);
+            <div className="search">
 
-                const filteredRestaurant = listOfRestaurants.filter(
-                  (res) =>
-                    res.info.name.toLowerCase().includes(searchText));
+              <input type="text"
+                data-testid="searchInput"
+                className="border border-solid border-gray-500 w-[360px] h-[38px] rounded-s-md border-r-0 px-3"
+                value={searchText} onChange={(e) => {
+                  setSearchText(e.target.value);     //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
+                  const filteredRestaurant = listOfRestaurants.filter(
+                    (res) =>
+                      res.info.name.toLowerCase().includes(searchText));
 
-                setFilteredRestaurant(filteredRestaurant);
+                  setFilteredRestaurant(filteredRestaurant);
+                }} />
 
-              }}>Search</button>
-          </div>
+              <button className="px-4 py-2 bg-green-100  rounded-e-md border border-gray-500 h-[40px]"
+                onClick={() => {
+                  //Filer the restaurant card and update the UI
+                  console.log(searchText);
 
-          <div className="search md:m-4 md:p-4 flex items-center">
-            <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
-              const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4.3
-              );
-              setFilteredRestaurant(filteredList);
-            }}
-            >
-              Top Rated Restaurant</button>
-          </div>
+                  const filteredRestaurant = listOfRestaurants.filter(
+                    (res) =>
+                      res.info.name.toLowerCase().includes(searchText));
 
-          <div className="search m-4 p-4 flex items-center">
-            <label>UserName: </label>
-            <input className="border border-black p-2"
-              value={loggedInUser}
-              onChange={(e) => setUsername(e.target.value)} />
+                  setFilteredRestaurant(filteredRestaurant);
+
+                }}>Search</button>
+            </div>
           </div>
         </div>
+
+
+        <h1 className="text-xl font-bold mt-5">{carouselTitle}</h1>
+        <div className="flex mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
+          {itemsCarousel.map((car, index) => (
+            <Link to={'/collections/' + car?.action?.link?.split("=")[1]?.split("&")[0]} key={car.id}>            
+            <ItemsCarousel item={car} />
+            </Link>
+
+          ))
+          }
+        </div>
+
+        <div className="flex flex-wrap justify-evenly mt-12">
+          {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
+          (
+            <Link
+              key={restaurant?.info?.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+
+              {/**if the restaurant is promoted then add a promoted label to it */}
+              {
+                restaurant.info.areaName === "Rohini" ? <RestaurantCardPromoted resData={restaurant} /> : <RestaurantCard resData={restaurant} />
+              }
+
+              {/* <RestaurantCard resData={restaurant} />   Commented because I'm using Higher Order Component */}
+            </Link>   //Always use unique key and not index(avoid it)
+          ))}
+        </div>
       </div>
-
-
-      <div className="flex justify-space-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
-        <h1></h1>
-        {itemsCarousel.map((car, index) => (
-
-          <ItemsCarousel key={index} item={car} />
-        ))
-        }
-      </div>
-
-      <div className="flex flex-wrap justify-evenly">
-        {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
-        (
-          <Link
-            key={restaurant?.info?.id}
-            to={"/restaurants/" + restaurant.info.id}
-          >
-
-            {/**if the restaurant is promoted then add a promoted label to it */}
-            {
-              restaurant.info.areaName === "Rohini" ? <RestaurantCardPromoted resData={restaurant} /> : <RestaurantCard resData={restaurant} />
-            }
-
-            {/* <RestaurantCard resData={restaurant} />   Commented because I'm using Higher Order Component */}
-          </Link>   //Always use unique key and not index(avoid it)
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
