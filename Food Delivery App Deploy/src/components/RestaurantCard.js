@@ -30,7 +30,7 @@ const RestaurantCard = (props) => {
 
   // console.log(resData?.info?.aggregatedDiscountInfoV3);
 
-  const { deliveryTime } = sla;
+  const deliveryTime = sla?.deliveryTime ?? "--";
   const { header, subHeader } = aggregatedDiscountInfoV3 || {};
 
 
@@ -66,7 +66,7 @@ const RestaurantCard = (props) => {
       </div>
       <h4 className="text-gray-600"> {areaName}</h4>
 
-      <h4 className="truncate">{cuisines.join(', ')}</h4>
+      <h4 className="truncate">{Array.isArray(cuisines) ? cuisines.join(', ') : ''}</h4>
     </div>
   );
 };

@@ -133,12 +133,26 @@ const Body = () => {
 
   return !Array.isArray(listOfRestaurants) || listOfRestaurants.length === 0 ? <Shimmer /> : (
     <>
-      <div className="body md:px-[150px]">
+      <div className="body md:px-[150px] mt-8">
+
+
+        <h1 className="text-xl font-bold">{carouselTitle}</h1>
+        <div className="flex mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
+          {itemsCarousel.map((car, index) => (
+            <Link to={'/collections/' + car?.action?.link?.split("=")[1]?.split("&")[0]} key={car.id}>
+              <ItemsCarousel item={car} />
+            </Link>
+
+          ))
+          }
+        </div>
+
+
         <div className="flex justify-center px-5">
-          <div className="flex justify-between mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
+          <div className="flex justify-between mt-12 overflow-x-scroll md:overflow-x-auto whitespace-nowrap md:w-full items-center gap-3">
 
 
-            <div className="search md:m-4 md:p-4 flex items-center">
+            <div className="search flex items-center">
               <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
                 const filteredList = listOfRestaurants.filter(
                   (res) => res.info.avgRating > 4.3
@@ -180,18 +194,14 @@ const Body = () => {
         </div>
 
 
-        <h1 className="text-xl font-bold mt-5">{carouselTitle}</h1>
-        <div className="flex mt-5 overflow-x-scroll whitespace-nowrap md:w-full items-center gap-3">
-          {itemsCarousel.map((car, index) => (
-            <Link to={'/collections/' + car?.action?.link?.split("=")[1]?.split("&")[0]} key={car.id}>            
-            <ItemsCarousel item={car} />
-            </Link>
-
-          ))
-          }
-        </div>
-
         <div className="flex flex-wrap justify-evenly mt-12">
+
+          {filteredRestaurant.length === 0 && (
+            <div className="text-center text-xl font-semibold text-gray-500 mt-10">
+              Oops! No restaurants found.
+            </div>
+          )}
+
           {filteredRestaurant.map((restaurant) =>       //restaurant is a random map variable
           (
             <Link
