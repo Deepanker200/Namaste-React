@@ -1,4 +1,4 @@
-import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel, withTopRestaurant } from "./RestaurantCard";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -18,10 +18,12 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);    //state variable
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);    //state variable
   const [itemsCarousel, setItemsCarousel] = useState([]);
+  const [top,setTop]=useState([]);
   const [searchText, setSearchText] = useState("");    //state variable
   const [carouselTitle, setCarouselTitle] = useState("");
   // const [carouselCollection,setCarouselCollection]=useState("");
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
+  const TopRestaurant = withTopRestaurant(RestaurantCard)
 
   //Whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
   console.log("Body Rendered");   //At first it will print 2 times due to loggedInUser value as context api re-renders
@@ -44,6 +46,7 @@ const Body = () => {
     //Optional Chaining
     setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setTop(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setItemsCarousel(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     setCarouselTitle(json?.data?.cards[0]?.card?.card?.header.title)
   }
@@ -147,6 +150,29 @@ const Body = () => {
           }
         </div>
 
+        <h1 className='text-2xl font-bold my-10'>Top restaurant chains in Delhi</h1>
+
+
+        <div className="flex flex-wrap justify-between">
+
+          {top.length === 0 && (
+            <div className="text-center text-xl font-semibold text-gray-500 mt-10">
+              Oops! No restaurants found.
+            </div>
+          )}
+
+          {top.map((restaurant) =>       //restaurant is a random map variable
+          (
+            <Link
+              key={restaurant?.info?.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+              <TopRestaurant resData={restaurant} />
+
+            </Link>
+          ))}
+        </div>
+
 
         <div className="flex justify-center px-5">
           <div className="flex justify-between mt-12 overflow-x-scroll md:overflow-x-auto whitespace-nowrap md:w-full items-center gap-3">
@@ -194,7 +220,7 @@ const Body = () => {
         </div>
 
 
-        <div className="flex flex-wrap justify-evenly mt-12">
+        <div className="flex flex-wrap justify-between mt-12">
 
           {filteredRestaurant.length === 0 && (
             <div className="text-center text-xl font-semibold text-gray-500 mt-10">

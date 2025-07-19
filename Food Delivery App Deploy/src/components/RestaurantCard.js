@@ -33,10 +33,6 @@ const RestaurantCard = (props) => {
   const deliveryTime = sla?.deliveryTime ?? "--";
   const { header, subHeader } = aggregatedDiscountInfoV3 || {};
 
-
-
-
-
   // console.log(props);
   return (
     // <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200 text-black" style={styleCard}>    //custom styling
@@ -82,6 +78,36 @@ export const withPromotedLabel = (RestaurantCard) => {
         <label className="absolute bg-red-500 text-white px-3 py-1 rounded-lg z-10 border border-black">Promoted</label>
         <RestaurantCard {...props} />
       </div>
+    )
+  }
+}
+
+
+export const withTopRestaurant = (RestaurantCard) => {
+  return (props) => {
+  const { resData } = props;
+
+  const {
+    cloudinaryImageId,
+    name,
+    avgRating,
+    cuisines,
+    sla,
+    costForTwo,
+    locality,
+    areaName,
+    aggregatedDiscountInfoV3
+  } = resData?.info || {};
+
+  // console.log(resData?.info?.aggregatedDiscountInfoV3);
+
+  const deliveryTime = sla?.deliveryTime ?? "--";
+  const { header, subHeader } = aggregatedDiscountInfoV3 || {};
+
+    return (
+      <div>
+          <RestaurantCard {...props} />
+        </div>
     )
   }
 }
