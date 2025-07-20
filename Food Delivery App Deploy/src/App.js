@@ -16,6 +16,7 @@ import { Provider } from "react-redux"
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Collections from "./components/Collections";
+import '@fortawesome/fontawesome-free/css/all.css'
 
 
 // import Grocery from "./components/Grocery";

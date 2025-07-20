@@ -5,5 +5,8 @@
       "@parcel/transformer-js",
       "@parcel/transformer-react-refresh-wrap"
     ]
+  },
+  "optimizers": {
+    "*.css": ["@parcel/optimizer-css"]
   }
 }

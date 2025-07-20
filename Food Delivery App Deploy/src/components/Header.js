@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { LOGO_URL } from "../utils/constants";
 
 
-// import logo from '/img/appLogo.png';
-
 const Header = () => {
 
   const [btnNameReact, setBtnNameReact] = useState("Login")   //It re-renders
@@ -18,26 +16,11 @@ const Header = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  // console.log("Header render");
-  // console.log((btnNameReact));
-
-  // if no dependency array=> useEffect is called on every render
-  // if dependency array is empty =[] => useEffect is called on initial render(just once)
-  // if dependency array is [btnNameReact] => called everytime btnNameReact is updated
-
-
-  useEffect(() => {
-    // console.log("UseEffect called");
-
-  });
 
   const { loggedInUser } = useContext(UserContext);
-  // console.log(loggedInUser);
 
-  //Subscribing to the store using a Selector
 
   const cartItems = useSelector((store) => store.cart.items)
-  // console.log(cartItems);
 
   return (
     <>
@@ -54,13 +37,12 @@ const Header = () => {
           onBlur={() => setShowMenu(false)}
           onFocus={() => setShowMenu(true)}
         >
-          <span className="text-black flex justify-center items-center h-full text-2xl">☰</span>
+          <span className="text-black flex justify-center items-center h-full text-2xl">{showMenu ? "X" : "☰"}</span>
         </div>
 
         {showMenu && (
           <div className="absolute top-16 right-0 bg-white shadow-lg z-50 block md:hidden">
             <ul className="flex flex-col p-4 text-sm md:text-base">
-              <li className="py-1">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
               <li className="py-1">
                 <Link to="/">Home</Link>
               </li>
@@ -77,18 +59,17 @@ const Header = () => {
                 <Link to="/cart">Cart - ({cartItems.length} items)</Link>
               </li>
               <li className="flex justify-start">
-                <button
-                  className="px-3 py-2 bg-black text-white rounded-lg"
-                  onClick={() =>
-                    btnNameReact === "Login"
-                      ? setBtnNameReact("Logout")
-                      : setBtnNameReact("Login")
-                  }
-                >
+                <button className="login flex items-center gap-2" onClick={() => {
+                  setBtnNameReact(btnNameReact === "Login" ? "Logout" : "Login");
+                }}>
+                  <span
+                    className={`h-3 w-3 rounded-full ${btnNameReact === "Login" ? "bg-red-500" : "bg-green-500"
+                      }`}
+                  ></span>
                   {btnNameReact}
                 </button>
+
               </li>
-              <li className="py-1 font-bold">{loggedInUser}</li>
             </ul>
           </div>
         )}
@@ -96,9 +77,7 @@ const Header = () => {
 
         <div className="items-center hidden md:flex">
           <ul className="flex flex-wrap p-1 m-1 md:p-4 md:m-4 text-[10px] md:text-[16px]">
-            <li className="px-2 md:px-4">
-              Online Status: {onlineStatus ? "✅" : "🔴"}
-            </li>
+
             <li className="px-2 md:px-4">
               <Link to="/">Home</Link>
             </li>
@@ -116,16 +95,19 @@ const Header = () => {
                 Cart - ({cartItems.length} items)
               </Link>
             </li>
-            <button className="login" onClick={() => {
-              btnNameReact === "Login"
-                ? setBtnNameReact("Logout")
-                : setBtnNameReact("Login")
-            }}>{btnNameReact}</button>
-            <li className="px-2 md:px-4 font-bold">{loggedInUser}</li>
+            <button className="login flex items-center gap-2" onClick={() => {
+              setBtnNameReact(btnNameReact === "Login" ? "Logout" : "Login");
+            }}>
+              <span
+                className={`h-3 w-3 rounded-full ${btnNameReact === "Login" ? "bg-red-500" : "bg-green-500"
+                  }`}
+              ></span>
+              {btnNameReact}
+            </button>
           </ul>
         </div>
       </div>
-      <div className="h-[100px]">
+      <div className="h-[60px] md:h-[100px]">
       </div>
     </>
   );

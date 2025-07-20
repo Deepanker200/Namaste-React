@@ -1,7 +1,7 @@
-import { useState } from "react";
+
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data, showItems, setShowIndex,dummy }) => {
+const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
     // console.log(data);
 
 
@@ -16,11 +16,11 @@ const RestaurantCategory = ({ data, showItems, setShowIndex,dummy }) => {
                 <div className="flex justify-between cursor-pointer" onClick={handleClick}>
                     <span className="font-bold text-lg">
                         {data.title}({data.itemCards.length})</span>
-                    <span>{showItems ? "⬆️" : "⬇️"}</span>
+                    <span>{showItems ?  <i className="fa-solid fa-angle-up"></i>: <i className="fa-solid fa-angle-down"></i> }</span>
                 </div>
 
                 {/**Accordion Body */}
-                {showItems && <ItemList items={data.itemCards}  dummy={dummy}/>}
+                {showItems && <ItemList items={data.itemCards} />}
             </div>
         </div>
     );
