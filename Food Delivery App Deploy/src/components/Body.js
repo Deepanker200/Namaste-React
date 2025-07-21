@@ -239,7 +239,7 @@ const Body = () => {
                   setSearchText(e.target.value);
                   const filteredRestaurant = listOfRestaurants.filter(
                     (res) =>
-                      res.info.name.toLowerCase().includes(searchText));
+                      res.info.name.toLowerCase().includes(searchText.toLowerCase()));
 
                   setFilteredRestaurant(filteredRestaurant);
                 }} />
