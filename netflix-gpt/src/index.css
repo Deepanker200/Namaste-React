@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* For horizontal scroll */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1f1f1f; /* Track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(188, 183, 183, 0.484); /* Scrollbar thumb color */
+  border-radius: 10px;
+}

@@ -2,12 +2,12 @@ import { useDispatch } from "react-redux";
 import client from "../utils/openai";
 import { addGptMovieResult } from "../utils/gptSlice";
 
-const useGptApiHook=()=>{
+const useGptApiHook = () => {
 
   const dispatch = useDispatch();
 
 
-      const handleGptSearchClick = async () => {
+  const handleGptSearchClick = async () => {
     console.log(searchText.current.value);
 
     //Make an API call to GPT API and get Movie Result
@@ -15,7 +15,7 @@ const useGptApiHook=()=>{
     const getQuery = "Act as a Movie Recommendation System and Sugges some movies for the query " + searchText.current.value + ". Only give me names and not write 'Here are... '  of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
 
     const gptResults = await client.chat.completions.create({
-      model: "llama3-70b-8192",
+      model: "llama-3.3-70b-versatile",
       messages: [
         { role: 'user', content: getQuery },
       ],

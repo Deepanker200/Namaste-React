@@ -28,7 +28,7 @@ const GptSearchBar = () => {
     const getQuery = "Act as a Movie Recommendation System and Sugges some movies for the query " + searchText.current.value + ". Only give me names and not write 'Here are... '  of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
 
     const gptResults = await client.chat.completions.create({
-      model: "llama3-70b-8192",
+      model: "llama-3.3-70b-versatile",
       messages: [
         { role: 'user', content: getQuery },
       ],

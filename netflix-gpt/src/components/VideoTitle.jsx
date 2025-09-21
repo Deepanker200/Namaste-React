@@ -6,7 +6,9 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div className="w-full aspect-video pt-[10%] md:pt-[20%] px-6 md:px-24 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-3xl md:text-6xl font-bold mb-3">{title}</h1>
-      <p className="hidden md:inline-block py-6 text-lg w-1/3">{overview}</p>
+      <div className='py-6'>
+      <p className="text-lg w-1/3 hidden md:line-clamp-4">{overview}</p>
+      </div>
       <div className="flex">
         <button className="bg-white text-black p-2 md:p-4 px-4 md:px-12 text-lg md:text-xl flex gap-2 items-center rounded-lg">
           <FontAwesomeIcon icon={faPlay} />
