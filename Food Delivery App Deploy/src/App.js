@@ -17,6 +17,7 @@ import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Collections from "./components/Collections";
 import '@fortawesome/fontawesome-free/css/all.css'
+import Footer from "./components/Footer";
 
 
 // import Grocery from "./components/Grocery";
@@ -48,6 +49,7 @@ const AppLayout = () => {
           <Header />
           {/* </UserContext.Provider> */}
           <Outlet />
+          <Footer/>
         </div>
       </UserContext.Provider>
     </Provider>

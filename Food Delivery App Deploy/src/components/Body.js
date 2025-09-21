@@ -71,7 +71,7 @@ const Body = () => {
 
   if (onlineStatus === false)
     return (
-      <h1>
+      <h1 className='text-2xl md:text-4xl text-center font-bold my-40'>
         Looks like you are offline! Please check your internet connection
       </h1>
     );
