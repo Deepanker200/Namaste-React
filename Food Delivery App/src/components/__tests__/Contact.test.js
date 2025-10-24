@@ -45,7 +45,7 @@ describe("Contact Us Page Test Case", () => {
         const button = screen.getByText("Submit");
 
         //Assertion
-        expect(button).toBeInTheDocument();
+        expect(button).toBeInTheDocument();     //toBeInDocument is from @testing-library/js-dom
     })
 
 

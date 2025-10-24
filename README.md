@@ -30,7 +30,7 @@ import {Component} from "path
 - Hooks are utility functions
 - Never put a state variable inside a condition (specially the useState() hook)
 - Never put a state variable inside a function nor in a loop (specially the useState() hook)
-- Never update state variable directly
+- Never update state variable directly  count=count+1
 
 # 2 types Routing in web apps
 - Client Side Routing
@@ -58,6 +58,8 @@ import {Component} from "path
     - Second componentDidMount
 
 - Parent componentDidMount
+
+- ComponentDidMount is used to make API call
 
 <!-- Render phase is fast than commit phase -->
 - Chunking
@@ -98,9 +100,11 @@ import {Component} from "path
 - Installed Babel Dependencies
 - Configure Babel
 - Configue Parcel Config file to disable default Babel transpilation
-- Jest Configuration(npx create-jest)
+- Jest - npx jest --init
+- Install jsdom library
 - Install "@babel/preset-react" to make JSX work for test cases and also configure our "babel.config.js" file
 - Install "@testing-library/jest-dom"
+- Jest Configuration(npx create-jest)
 
 
 
