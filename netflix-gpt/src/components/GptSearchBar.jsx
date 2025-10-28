@@ -10,6 +10,7 @@ const GptSearchBar = () => {
   const langKey = useSelector(store => store.config.lang);
   const searchText = useRef(null);
   const dispatch = useDispatch();
+  const getSearchedText=useSelector((store)=>store.gpt.movieSearchText)
 
   //search movie in TMDB
   const searchMovieTMDB = async (movie) => {
@@ -47,7 +48,7 @@ const GptSearchBar = () => {
     const tmdbResults = await Promise.all(promiseArray);
     console.log(tmdbResults);
 
-    dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }));
+    dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults,movieSearchText:searchText.current.value }));
   }
 
 
@@ -59,7 +60,7 @@ const GptSearchBar = () => {
         <input
           ref={searchText}
           type='text' className='p-2 md:p-4 m-2 md:m-4 col-span-9'
-          placeholder={lang[langKey].gptSearchPlaceholder} />
+          placeholder={lang[langKey].gptSearchPlaceholder} value={getSearchedText}/>
         <button className='py-2 px-3 md:px-4 m-3 bg-red-700 text-white rounded-lg col-span-3'
           onClick={handleGptSearchClick}>
           {lang[langKey].search}

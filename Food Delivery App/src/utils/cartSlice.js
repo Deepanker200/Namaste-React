@@ -10,7 +10,7 @@ const cartSlice = createSlice({
     reducers: {
         addItem: (state, action) => {
 
-            //Vamilla(older) Redux => DON'T MUTATE STATE returning is not mandatory
+            //Vanilla(older) Redux => DON'T MUTATE STATE returning is not mandatory
             //const newState=[...state];        (Immer js)
             //newState.push(action.payload);
             //return newState;
