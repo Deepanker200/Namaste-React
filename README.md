@@ -177,3 +177,7 @@ import {Component} from "path
 
 # Points to remember
 - Formik Library in React for making big forms
+
+# Extras~ Optimisation
+- useMemo: It returns memoized value
+- useCallback(with memo): It returns memoized function
